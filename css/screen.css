@@ -28,6 +28,8 @@
 --global-color-transparent: rgba(51, 133, 255, 0.75);
 --global-color-transparent-light: rgba(51, 133, 255, 0.3);
 
+
+
 --global-color-neutral-xxxx-light: #F5F6FA;
 --global-color-neutral-xxx-light: #E2E3E7; 
 --global-color-neutral-xx-light: #CACCD4;
@@ -39,6 +41,9 @@
 --global-color-neutral-xx-dark: #4B4C60;
 --global-color-neutral-xxx-dark: #35374D;
 --global-color-neutral-xxxx-dark: #20223A;
+
+--global-page-color: var(--color-neutral-xxxx-dark);
+--global-page-backgroundColor: var(--color-neutral-xxxx-light);
 
 --global-baseline: 8px; 
 --global-whitespace: calc(var(--global-baseline) * 3); /* = 24px */
@@ -67,12 +72,25 @@ html {
     font-size: var(--global-whitespace-md);
     line-height: 1.5;
     font-family: 'Inter Web', 'Comic Sans MS', Helvetica, arial, sans-serif;
-    color: var(--global-color-neutral-xxxx-dark);
+    color: var(--global-page-color); 
+    background-color: var(--global-color-neutral-xxxx-light);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--global-color-neutral-xxxx-light);
+    
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --global-page-color: White;
+        --global-page-backgroundColor: var(--color-neutral-xxxx-dark);
+    }
+    html {
+        background-color: var(--global-color-neutral-xxxx-dark);
+        color: white;
+    }
+}
+
 
 *,
 *:before,
@@ -201,6 +219,7 @@ hr {
 a {
     color: var(--global-color-alpha);
     transition: all .1s ease-in-out;
+    text-decoration: none;
 }
 
 
@@ -497,14 +516,24 @@ input {
 }
 
 .c-logo__path--1 {
-    fill:var(--global-color-neutral-xxxx-dark);
-} 
-.c-logo__path--2 {
-    fill:var(--global-color-alpha);
-} 
-.c-logo__path--3 {
-    fill:#1B4186;
-} 
+    fill: var(--logo__path--1--fill, var(--global-color-neutral-xxxx-dark));
+  }
+  
+  .c-logo__path--2 {
+    fill: var(--logo__path--2--fill, var(--global-color-alpha));
+  }
+  
+  .c-logo__path--3 {
+    fill: var(--logo__path--3--fill, var(--global-color-alpha-x-dark));
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .c-logo {
+      --logo__path--1--fill: White;
+      --logo__path--2--fill: var(--logo__path--1--fill);
+      --logo__path--3--fill: var(--logo__path--1--fill);
+    }
+  }
 
 /*
     Component: Card
@@ -544,6 +573,15 @@ input {
     padding-top: var(--global-whitespace-xl);
     margin:0;
 }
+@media (prefers-color-scheme: dark) {
+    .c-card {
+        background-color:var(--global-color-neutral-xxx-dark);
+    }
+    .c-card__footer
+    {
+        color:var(--global-color-neutral-dark);
+        }
+}
 /*
     Component: Forms
     ---
@@ -582,6 +620,14 @@ input {
     box-shadow: 0 0 0 3px var(--global-color-transparent-light); 
 }
 
+@media (prefers-color-scheme: dark) {
+    .c-input {
+        background-color:var(--global-color-neutral-xxxx-dark);
+        border:1px solid var(--global-color-neutral-xxxx-dark);
+        color:white;
+    }
+}
+
 /*
     Component: Label
     ---
@@ -601,6 +647,17 @@ input {
     margin-bottom:none;
     margin-left:var(--global-whitespace-sm);
     color:var(--global-color-neutral-x-dark);
+}
+@media (prefers-color-scheme: dark) {
+    .c-label {
+        color:var(--global-color-neutral-x-light);
+    }
+    .c-label--option{
+        color:var(--global-color-neutral-x-light);
+    }
+    input {
+        fill:red;
+    }
 }
 
 /* If a input is focused within the form-field class change te color of the label */
