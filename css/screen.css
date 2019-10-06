@@ -648,6 +648,7 @@ input {
     margin-left:var(--global-whitespace-sm);
     color:var(--global-color-neutral-x-dark);
 }
+
 @media (prefers-color-scheme: dark) {
     .c-label {
         color:var(--global-color-neutral-x-light);
@@ -655,9 +656,7 @@ input {
     .c-label--option{
         color:var(--global-color-neutral-x-light);
     }
-    input {
-        fill:red;
-    }
+    
 }
 
 /* If a input is focused within the form-field class change te color of the label */
